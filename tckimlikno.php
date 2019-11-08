@@ -253,15 +253,22 @@ class TCKimlikNoSinifi {
 
 	public function YabanciKimlikMi($TCKimlikNo)
 		{
-			$basamak = str_split($TCKimlikNo);  //basamaklarına ayır
-			$basamak1 = $basamak[0];
-			$basamak2 = $basamak[1];
-			
-			if ($basamak1=="9" and $basamak2=="9")   // Kimlik No 99 ile başlıyorsa Yabancı kimlik nodur
+			if ( strlen($TCKimlikNo) == 11 )   //onbir haneyse işleme devam et
 				{
-					$sonuc="true";
+					$basamak = str_split($TCKimlikNo);  //basamaklarına ayır
+					$basamak1 = $basamak[0];
+					$basamak2 = $basamak[1];
+			
+					if ($basamak1=="9" and $basamak2=="9")   // Kimlik No 99 ile başlıyorsa Yabancı kimlik nodur
+						{
+							$sonuc="true";
+						}
+					else
+						{
+							$sonuc="false";
+						}
 				}
-			else
+			if ( strlen($TCKimlikNo) != 11 )   //onbir hane değilse geçersizdir.
 				{
 					$sonuc="false";
 				}
